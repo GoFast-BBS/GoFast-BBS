@@ -1,13 +1,17 @@
 package main
 
 import (
-	_ "site/internal/packed"
+  "net/http"
 
-	"github.com/gogf/gf/v2/os/gctx"
-
-	"site/internal/cmd"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	cmd.Main.Run(gctx.New())
+  r := gin.Default()
+  r.GET("/", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
+  r.Run()
 }
